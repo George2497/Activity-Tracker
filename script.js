@@ -1,7 +1,6 @@
 'use strict';
 
 // Global Variables
-// let map, mapEvent;
 class Workout {
     date = new Date();
     id = (Date.now() + ''.slice(-10)); // make a new ID of date and then convert that to a String adn take the last 10 characters
@@ -45,7 +44,6 @@ class Cycling extends Workout {
     constructor(coords, distance, duration, elevationGain) {
         super(coords, distance, duration);
         this.elevationGain = elevationGain;
-        // this.type = 'cycling';
         this.calcSpeed();
         this._setDescription();
     }
@@ -56,10 +54,6 @@ class Cycling extends Workout {
         return this.speed;
     }
 }
-
-// const run1 = new Running([39, -12], 5.2, 24, 178);
-// const cycling1 = new Cycling([39, -12], 27, 95, 523);
-// console.log(run1, cycling1);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Application Architecture
@@ -79,7 +73,6 @@ class App {
     #workouts = [];
 
     constructor() {
-        // this.workout = [];
         // Get user's position
         this._getPosition();
 
@@ -102,7 +95,6 @@ class App {
     _loadMap(position) {
         const { latitude } = position.coords; // gets the position for the latitude
         const { longitude } = position.coords; // gets the position for the logitude
-        //console.log(`https://www.google.com/maps/@${latitude},${longitude}`); // pronts the position of the latitude and longitude
 
         // Coords is the center of the map
         // coming from geolocation
@@ -110,9 +102,7 @@ class App {
 
         // L is a namespace from Leaflet
         // Handling clicks on map
-        // console.log(this);
         this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
-        // console.log(map);
 
         L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 
@@ -124,7 +114,6 @@ class App {
         this.#map.on('click', this._showForm.bind(this));
 
         this.#workouts.forEach(work => {
-            // this._renderWorkout(work);
             this._renderWorkoutMarker(work);
         });
     };
@@ -172,9 +161,6 @@ class App {
             const cadence = +inputCadence.value;
             // Check if data is valid
             if (
-                // !Number.isFinite(distance) ||
-                // !Number.isFinite(duration) ||
-                // !Number.isFinite(cadence)
                 !validInputs(distance, duration, cadence) ||
                 !allPositive(distance, duration, cadence)
             )
@@ -294,17 +280,15 @@ class App {
             }
         });
 
-        // Using the public interface
-        // workout.click();
     }
-
+        // Using Local Storage
+        // Using the public interface
     _setLocalStorage() {
         localStorage.setItem('workouts', JSON.stringify(this.#workouts));
     }
 
     _getLocalStorage() {
         const data = JSON.parse(localStorage.getItem('workouts'));
-        // console.log(data);
 
         if (!data) return;
 
@@ -321,7 +305,3 @@ class App {
     }
 }
 const app = new App();
-// "app._getPosition();" was already being called so by leaving this
-// uncommented, this will give an error of
-// Uncaught Error: Map container is already initialized
-// app._getPosition();
