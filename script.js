@@ -245,6 +245,7 @@ class App {
                    <span class="workout__unit">spm</span>
                  </div>
                    </li>`;
+        }
 
             if (workout.type === 'cycling') {
                 html += `
@@ -259,7 +260,6 @@ class App {
                      <span class="workout__unit">m</span>
                    </div>
                    </li>`;
-            }
         }
         form.insertAdjacentHTML('afterend', html);
     }
