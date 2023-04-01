@@ -1,5 +1,5 @@
 'use strict';
-
+// repo test
 // Global Variables
 class Workout {
     date = new Date();
@@ -247,8 +247,8 @@ class App {
                    </li>`;
         }
 
-            if (workout.type === 'cycling') {
-                html += `
+        if (workout.type === 'cycling') {
+            html += `
                     <div class="workout__details">
                      <span class="workout__icon">⚡️</span>
                      <span class="workout__value">${workout.speed.toFixed(1)}</span>
@@ -281,8 +281,8 @@ class App {
         });
 
     }
-        // Using Local Storage
-        // Using the public interface
+    // Using Local Storage
+    // Using the public interface
     _setLocalStorage() {
         localStorage.setItem('workouts', JSON.stringify(this.#workouts));
     }
