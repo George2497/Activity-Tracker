@@ -64,6 +64,7 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+const resetApp = document.querySelector('.resetApp');
 
 class App {
     // Private variables
@@ -303,5 +304,12 @@ class App {
         localStorage.removeItem('workouts');
         location.reload();
     }
+
 }
+
+// This button will reset the application of all wokrouts that have been inputted
+resetApp.addEventListener('click', function () {
+    app.reset();
+});
+
 const app = new App();
